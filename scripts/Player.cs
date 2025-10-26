@@ -9,6 +9,7 @@ public partial class player : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
+		var sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
 		if (!IsOnFloor())
 		{
@@ -19,18 +20,27 @@ public partial class player : CharacterBody2D
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+			sprite.Play("jump");
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;
+			sprite.Play("run");
+			if (direction.X > 0)
+			{
+				sprite.FlipH = false;
+			}
+			else
+			{
+				sprite.FlipH = true;
+			}
 		}
 		else
 		{
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+			sprite.Play("idle");
 		}
 
 		Velocity = velocity;
