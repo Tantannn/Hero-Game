@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d3rhlh7ump3dr" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://d2s50roclygld" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://bk6xjlhse3ano" path="res://scenes/killzone.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bmtpdne816gvt" path="res://scenes/deadzone.tscn" id="3_lnu2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -384,5 +384,7 @@ position = Vector2(1, 0)
 tile_map_data = PackedByteArray("AAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAACAAAAAAAJAAAAAAADAAAAAAAKAAAAAAAEAAAAAAALAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAD9/wAAAAAAAAAAAAD7/wEAAAAAAAEAAAD8/wEAAAAAAAEAAAD9/wEAAAAAAAEAAAD+/wEAAAAAAAEAAAD//wEAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAEAAAAAAAEAAAAFAAEAAAAAAAEAAAAGAAEAAAAAAAEAAAAHAAAAAAACAAAAAAAHAAEAAAACAAEAAAD7/wIAAAAAAAEAAAD8/wIAAAAAAAEAAAD9/wIAAAAAAAEAAAD+/wIAAAAAAAEAAAD+/wMAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD8/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAAAAAMAAAAAAAEAAAABAAMAAAAAAAEAAAABAAIAAAAAAAEAAAAAAAIAAAAAAAEAAAD7/wMAAAAAAAEAAAAFAAIAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAA=")
 tile_set = SubResource("TileSet_lbhrr")
 
-[node name="Killzone" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(1, 77)
+[node name="Deadzone" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(1, 76)
+
+[connection signal="child_entered_tree" from="Deadzone" to="Player" method="_OnDeadzoneChildEnteredTree"]
