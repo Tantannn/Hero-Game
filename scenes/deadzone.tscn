@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://di0ecyi55l0io" path="res://scripts/Deadzone.cs" id="1_t3cga"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x668l"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t3cga"]
 
 [node name="Deadzone" type="Area2D"]
 script = ExtResource("1_t3cga")
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("WorldBoundaryShape2D_x668l")
+shape = SubResource("WorldBoundaryShape2D_t3cga")
 
 [connection signal="body_entered" from="." to="." method="_OnBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="_OnTimerTimeout"]
